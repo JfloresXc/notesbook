@@ -1,0 +1,41 @@
+.menu {
+	position: absolute;
+	background: transparent;
+	z-index: 100;
+	font-size: 16px;
+}
+
+.menu__content {
+	display: none;
+	position: absolute;
+}
+
+.menu__content-item:hover {
+	background: var(--colors-danger);
+}
+
+.menu__icon {
+	display: block;
+}
+
+.menu:hover .menu__content {
+	display: block;
+	background: var(--colors-light);
+}
+
+.menu:hover .menu__icon {
+	background: var(--colors-light);
+}
+
+/* -------------------- MODIFIERS */
+.menu__content-item-update:hover {
+	background: var(--colors-success);
+}
+
+.menu__content-item-delete:hover {
+	background: var(--colors-danger);
+}
+
+.menu__content-item-hidden:hover {
+	background: var(--colors-accent-2-light);
+}

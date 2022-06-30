@@ -1,0 +1,90 @@
+.button {
+	--time-transition: 0.3s;
+	position: relative;
+	padding: 2em 1em;
+	min-height: 20px;
+	font-size: 0.875em;
+	transition: var(--time-transition) ease-in-out all;
+}
+
+.button__icon {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	transition: var(--time-transition) ease-in-out all;
+}
+
+/*  ----------------------------- MODIFIERS */
+/* Design Fit */
+.button-fit {
+	margin: 0 auto;
+	width: fit-content;
+}
+
+/* Design Secondary */
+.button-secondary {
+	background: var(--colors-primary);
+	color: var(--colors-light);
+	position: relative;
+}
+
+.button-secondary .button__message {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: var(--time-transition) ease-in-out all;
+}
+
+.button-secondary .button__icon {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+}
+
+.button-secondary:hover {
+	background: var(--colors-primary-1-light);
+}
+
+.button-secondary:hover .button__message {
+	transform: translate(-80px, -50%);
+	opacity: 1;
+}
+
+.button-secondary:hover .button__icon {
+	transform: translate(60px, -50%);
+	opacity: 1;
+}
+
+/* Design line light */
+.button-line-light {
+	width: 100%;
+	height: fit-content;
+	padding: 0;
+	background: transparent;
+	color: var(--colors-light);
+}
+
+/* Design clasic */
+.button-clasic {
+	position: static;
+	width: fit-content;
+	background: var(--colors-primary);
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	transition: 0.3s ease-in-out all;
+	padding: 1em;
+	color: var(--colors-light);
+}
+
+.button-clasic:hover {
+	background: var(--colors-primary-1-light);
+}
+
+/* Design icon*/
+.button-icon {
+	max-width: fit-content;
+	background: transparent;
+	padding: 0.5em;
+	border-radius: 0;
+}

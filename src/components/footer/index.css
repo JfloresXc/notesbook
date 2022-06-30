@@ -1,0 +1,19 @@
+.footer {
+	min-height: 300px;
+	width: 100%;
+	padding: var(--padding-width);
+	background: var(--colors-primary);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: var(--colors-light);
+}
+
+.footer__title {
+	margin-bottom: 1em;
+	font-size: var(--font-bigtitle);
+}
+
+.footer__description {
+	font-size: 1.2em;
+}

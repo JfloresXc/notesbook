@@ -1,0 +1,62 @@
+.icon {
+	position: relative;
+	width: 24px;
+	height: 24px;
+}
+
+.icon__rectangule {
+	position: absolute;
+}
+
+/* Icon Subject */
+.icon-subject .icon__rectangule-1 {
+	top: 0;
+	width: 24px;
+	height: 5px;
+	background: var(--colors-success);
+}
+
+.icon-subject .icon__rectangule-2 {
+	bottom: 0;
+	left: 0;
+	width: 6px;
+	height: 15px;
+	background: var(--colors-danger);
+}
+
+.icon-subject .icon__rectangule-3 {
+	bottom: 0;
+	right: 0;
+	width: 14px;
+	height: 15px;
+	background: var(--colors-primary);
+}
+
+.icon-trait {
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+}
+
+.icon-trait .icon__rectangule-1 {
+	top: 0;
+	width: 4px;
+	height: 22px;
+	background: var(--color-purple-800);
+}
+
+.icon-trait .icon__rectangule-2 {
+	top: 0;
+	left: 7px;
+	width: 10px;
+	height: 22px;
+	background: var(--color-purple);
+}
+
+.icon-trait .icon__rectangule-3 {
+	top: 0;
+	right: 0;
+	width: 4px;
+	height: 22px;
+	background: var(--color-turquoise);
+}

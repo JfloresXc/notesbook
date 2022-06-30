@@ -1,0 +1,6 @@
+.signup {
+	background-color: var(--colors-grey-100);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

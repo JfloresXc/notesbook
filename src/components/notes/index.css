@@ -1,0 +1,14 @@
+.notes {
+	width: 100%;
+}
+
+.notes__title {
+	font-size: 1.25em;
+	padding-bottom: 1em;
+}
+
+.notes__list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+	gap: 2em;
+}

@@ -1,0 +1,83 @@
+/* FORM */
+.form {
+	width: 100%;
+	max-width: 400px;
+	display: flex;
+	flex-direction: column;
+	gap: 2em;
+	padding: 2em;
+}
+
+.form__title {
+	text-align: center;
+	font-size: var(--font-title);
+}
+
+.form__group {
+	width: 100%;
+}
+
+.form > button {
+	margin: 0 auto;
+}
+
+/* LABEL */
+.label {
+	padding-bottom: 0.3em;
+	display: block;
+	font-size: 1em;
+}
+
+/* INPUT */
+input {
+	font-size: 0.875em;
+}
+
+.inputFile {
+	/* Display none no - opacity mejor */
+	opacity: 0;
+	display: block;
+	height: 0.1px;
+	width: 0.1px;
+}
+
+.inputFile__label {
+	display: block;
+	text-align: center;
+	border: 1px solid var(--colors-light);
+	padding: 1em;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.input__error {
+	display: block;
+	margin-top: 0.5em;
+	font-size: 0.9375em;
+	color: var(--colors-danger);
+}
+
+/* TEXTAREA */
+.textarea {
+	font-size: 0.875em;
+}
+
+/* SELECT */
+.select {
+	width: 100%;
+}
+
+/* ------------------------- MODIFIERS */
+/* FORM */
+.form-dark {
+	max-width: 100%;
+	background: #1a3263;
+	border-radius: 3px;
+	color: var(--colors-light);
+}
+
+@media screen and (max-width: 600px) {
+	.form {
+		padding: 2em 0;
+	}
+}

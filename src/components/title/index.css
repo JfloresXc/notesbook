@@ -1,0 +1,6 @@
+.title {
+	width: 100%;
+	display: block;
+	padding-bottom: 1em;
+	font-size: var(--font-title);
+}

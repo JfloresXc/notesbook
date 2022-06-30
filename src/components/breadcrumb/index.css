@@ -1,0 +1,19 @@
+.breadcrumb {
+	display: flex;
+	gap: 1em;
+	padding-bottom: 1em;
+}
+
+.breadcrumb__item {
+	font-size: var(--font-subtitle);
+}
+
+.breadcrumb__item a {
+	cursor: auto;
+}
+
+/* ---------------- MODIFIERS */
+.breadcrumb__item-actived > a {
+	color: var(--colors-primary);
+	cursor: pointer;
+}

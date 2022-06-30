@@ -1,0 +1,72 @@
+.home__header {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+	gap: 1em;
+	padding: 5em var(--padding-width);
+	min-height: 90vh;
+	background-image: url("/public/notas-portada.jpg");
+	background-size: cover;
+	background-position: center center;
+	color: var(--colors-light);
+	position: relative;
+}
+
+.home__header::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.2);
+}
+
+.home__title,
+.home__description {
+	flex: 1 1 300px;
+	z-index: 100;
+}
+
+.home__title {
+	font-size: calc(var(--font-title) + 5px);
+	line-height: 35px;
+	max-width: 400px;
+}
+
+.home__description {
+	max-width: 400px;
+	font-size: var(--font-text);
+	display: flex;
+	flex-direction: column;
+	gap: 2em;
+	align-items: flex-end;
+	text-align: end;
+}
+
+.home__button {
+	width: fit-content;
+	border: 1px solid var(--colors-light);
+	border-radius: 2px;
+	cursor: pointer;
+	padding: 1em;
+	text-align: center;
+	transition: 0.3s ease-in-out all;
+}
+
+.home__button:hover {
+	background: var(--colors-primary);
+	border: 1px solid transparent;
+}
+
+@media screen and (max-width: 600px) {
+	.home__title,
+	.home__description {
+		text-align: center;
+	}
+
+	.home__button {
+		align-self: center;
+	}
+}

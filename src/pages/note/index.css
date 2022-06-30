@@ -1,0 +1,4 @@
+.notePage {
+	display: flex;
+	flex-direction: column;
+}

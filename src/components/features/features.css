@@ -1,0 +1,24 @@
+.features__title,
+.features__button {
+	color: var(--color-white);
+}
+
+.features {
+	text-align: center;
+}
+
+.features__title {
+	font-size: var(--font-title);
+	margin-bottom: 2em;
+}
+
+.features_list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: 1.5em;
+}
+
+.features__button {
+	display: flex;
+	justify-content: center;
+}

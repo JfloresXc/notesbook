@@ -1,0 +1,94 @@
+.cardChapter {
+	max-width: 300px;
+	min-height: 500px;
+	background: var(--colors-light);
+	border-radius: 3px;
+	padding: 1em;
+	box-shadow: -1px 5px 5px 2px rgba(0, 0, 0, 0.8);
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	position: relative;
+}
+
+.cardChapter__body {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	height: 100%;
+}
+
+.cardChapter__image {
+	width: 100%;
+	height: 20rem;
+	object-fit: cover;
+}
+
+.cardChapter__title {
+	font-size: var(--font-subtitle);
+}
+
+.cardChapter__description {
+	font-size: var(--font-text);
+	padding-right: 2em;
+}
+
+/* Chapter Preview */
+.chapterPreview__content-form,
+.chapterPreview__content-image {
+	width: 100%;
+	flex: 1 1 300px;
+	max-width: 400px;
+}
+
+.chapterPreview {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	gap: 5em;
+	width: 100%;
+}
+
+.chapterPreview__content-image {
+	max-height: 37.5em;
+}
+
+.chapterPreview__previewImage {
+	width: 100%;
+	height: 95%;
+	display: block;
+	object-fit: cover;
+	border-radius: 5px;
+}
+
+/* --------------------------------- MODIFIERS */
+.chapter-float {
+	margin-left: -10em;
+	transition: margin-left 200ms;
+}
+
+.chapter-float:nth-child(1) {
+	margin-left: 0;
+	transition: margin-left 200ms;
+}
+
+.chapter-float:hover + .chapter-float {
+	margin-left: -1em;
+}
+
+/* ------------------------------------- MEDIAQUERIES */
+@media screen and (max-width: 1200px) {
+	.chapterPreview {
+		justify-content: center;
+	}
+
+	.chapter-float:hover + .chapter-float {
+		margin-left: 0;
+	}
+}
+
+@media screen and (max-width: 900px) {
+	.chapterPreview {
+		gap: 1em;
+	}
+}

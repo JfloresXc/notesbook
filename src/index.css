@@ -1,13 +1,108 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Gayathri:wght@700&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600&display=swap");
+:root {
+	--size-screen-desktop: 1200px;
+	--size-screen-tablet: 900px;
+	--size-screen-mobile: 500px;
+	--height-navbar: 80px;
+	--padding-width: 5em;
+	--font-bigtitle: 26px;
+	--font-title: 23px;
+	--font-subtitle: 20px;
+	--font-text: 16px;
+	--font-family: "Roboto Mono";
+
+	--colors-dark: #000000;
+	--colors-light: #fff;
+	--colors-primary: #1a3263;
+	--colors-primary-1-light: #374573;
+	--colors-danger: #b1415a;
+	--colors-success: #4dbd74;
+	--colors-grey-100: #f1f1f1;
+	--colors-grey-200: #dddddd;
+	--colors-grey-300: #c9c9c9;
+	--colors-grey-400: #b5b5b5;
+	--colors-grey-500: #b4b4b4;
+	--colors-grey-700: #717171;
+	--colors-grey-900: #272727;
+	--colors-secondary: #1a1a1a;
+	--colors-accent-1: #e8e2db;
+	--colors-accent-1-light: #f5564e;
+	--colors-accent-2-light: #d3801f;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: var(--font-family), sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+
+button {
+	font-family: var(--font-family), sans-serif;
+	border: none;
+	outline: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+input,
+textarea,
+select {
+	font-family: var(--font-family), sans-serif;
+	border: none;
+	outline: none;
+	font-size: 1em;
+	width: 100%;
+	padding: 1em;
+	border-radius: 5px;
+}
+
+select {
+	padding: 0.7em;
+}
+
+textarea {
+	resize: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
+@media screen and (max-width: 1200px) {
+	:root {
+		--padding-width: 1.5em;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	body {
+		--font-title: 20px;
+		--font-subtitle: 17px;
+		--font-text: 13px;
+	}
+
+	/* :root {
+		--font-title: 23px;
+		--font-subtitle: 20px;
+		--font-text: 16px;
+	} */
 }

@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css"
+
+import PageGlobal from "./pages/page-global"
+
+import UserContext from "./context/UserContext"
+import GlobalContext from "./context/GlobalContext"
+import AlertContext from "./context/AlertContext"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className="app">
+			<AlertContext>
+				<UserContext>
+					<GlobalContext>
+						<PageGlobal />
+					</GlobalContext>
+				</UserContext>
+			</AlertContext>
+		</div>
+	)
 }
 
-export default App;
+export default App

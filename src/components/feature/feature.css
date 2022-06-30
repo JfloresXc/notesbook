@@ -1,0 +1,35 @@
+.feature {
+	min-height: 340px;
+	display: flex;
+	flex-direction: column;
+	background: var(--colors-light);
+	border-radius: 5px;
+	padding: 2.5em 2em;
+	text-align: start;
+}
+
+.feature__title {
+	margin: 1em 0;
+	font-size: var(--font-title);
+	font-weight: 600;
+}
+
+.feature__description {
+	line-height: 1.625em;
+	font-size: var(--font-body-1);
+	margin-bottom: 1em;
+}
+
+.feature__button {
+	color: var(--colors-accent-1-light);
+	font-size: 0.75em;
+}
+
+.feature__button-icon {
+	margin-left: 0.625em;
+	font-weight: 500;
+}
+
+.feature__button:hover {
+	color: var(--color-orange);
+}

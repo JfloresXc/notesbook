@@ -1,0 +1,36 @@
+.alert {
+	position: fixed;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+
+	width: 400px;
+	min-height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
+	z-index: 1000;
+	transition: 0.4s ease-in-out all;
+}
+
+.alert__message {
+	color: var(--colors-light);
+	text-align: center;
+}
+
+/* --------------- MODIFIERS */
+.alert-success {
+	background: var(--colors-success);
+}
+
+.alert-danger {
+	background: var(--colors-danger);
+}
+
+/* --------------------- MEDIAQUERIES */
+@media screen and (max-width: 600px) {
+	.alert {
+		width: 300px;
+	}
+}
