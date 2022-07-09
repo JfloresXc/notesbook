@@ -39,7 +39,7 @@ export default function NotesPage() {
 			<Loader>
 				<>
 					<Breadcrumb items={ITEMS} />
-					<Title title={`📒 Capítulo: ${chapter?.title}`} />
+					<Title title={`${chapter?.title}`} />
 					<Notes notes={notesOwn}></Notes>
 				</>
 			</Loader>

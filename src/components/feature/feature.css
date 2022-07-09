@@ -1,5 +1,4 @@
 .feature {
-	min-height: 340px;
 	display: flex;
 	flex-direction: column;
 	background: var(--colors-light);
@@ -10,19 +9,19 @@
 
 .feature__title {
 	margin: 1em 0;
-	font-size: var(--font-title);
-	font-weight: 600;
+	font-size: var(--font-subtitle);
+	font-weight: 500;
 }
 
 .feature__description {
 	line-height: 1.625em;
-	font-size: var(--font-body-1);
+	font-size: var(--font-text);
 	margin-bottom: 1em;
 }
 
 .feature__button {
-	color: var(--colors-accent-1-light);
-	font-size: 0.75em;
+	color: var(--colors-primary-1-light);
+	font-size: var(--font-minitext);
 }
 
 .feature__button-icon {
@@ -31,5 +30,5 @@
 }
 
 .feature__button:hover {
-	color: var(--color-orange);
+	color: var(--colors-primary);
 }

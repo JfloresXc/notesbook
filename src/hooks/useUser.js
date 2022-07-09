@@ -4,6 +4,7 @@ import { validateError } from "../services/utils"
 import { login as signIn } from "../services/auth/login"
 import { signup as register } from "../services/auth/signup"
 import { logout as singOut } from "../services/auth/logout"
+import { forgottenPassword as forgottenService } from "../services/auth/forgotten"
 import { postUser } from "../services/users/postUser"
 import { useAlert } from "./useAlert"
 import { useLocation } from "wouter"
@@ -57,9 +58,25 @@ export const useUser = () => {
 		}
 	}
 
+	const forgottenPassword = async ({ email }) => {
+		try {
+			await forgottenService({ email })
+
+			setAlertTime({
+				message: "✅ Enviamos un mensaje a tu correo ✅",
+				success: true,
+			})
+		} catch ({ code }) {
+			if (validateError(code)) {
+				const message = validateError(code)
+				setAlertTime({ message, success: false })
+			}
+		}
+	}
+
 	const logout = async () => {
 		await singOut()
-		setLocation("/")
+		setLocation("/login")
 		setUserGlobal(null)
 	}
 
@@ -67,6 +84,7 @@ export const useUser = () => {
 		login,
 		signup,
 		logout,
+		forgottenPassword,
 		userGlobal,
 		setUserGlobal,
 		loading,

@@ -13,7 +13,7 @@ export default function ChapterAdd() {
 
 	return (
 		<div className="page chapterAdd">
-			<Title title="🆕 Formulario agregar capítulo" />
+			<Title title="Formulario agregar capítulo" />
 			<ChapterPreview
 				onSubmitForm={handleSubmitFather}
 				buttonMessage="Agregar capítulo"

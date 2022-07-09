@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react"
+import { useLocation } from "wouter"
 import { Context } from "../../context/UserContext"
 import { useToggle } from "../../hooks/useToggle"
 import { Link } from "wouter"
@@ -10,6 +11,7 @@ export default function Navbar() {
 	const [sticky, setSticky] = useState(false)
 	const [burger, toggleBurger] = useToggle(false)
 	const { userGlobal } = useContext(Context)
+	const setLocation = useLocation()[1]
 	const { logout } = useUser()
 
 	const setSticked = () => {
@@ -17,13 +19,15 @@ export default function Navbar() {
 		else setSticky(false)
 	}
 
+	const handleLogin = () => setLocation("/login")
+
 	window.addEventListener("scroll", setSticked)
 
 	return (
 		<nav>
 			<div className={`navbar ${sticky && "sticky"}`}>
 				<li className="navbar__brand-link">
-					<Link to="/">Notas 📚</Link>
+					<Link to="/">📚 Notesbook</Link>
 				</li>
 				<ul
 					className={`navbar__links ${
@@ -40,9 +44,19 @@ export default function Navbar() {
 					<li className="navbar__link">
 						<Link to="/chapters">Historia</Link>
 					</li>
+					{userGlobal &&
+						userGlobal.displayName === "administrator" && (
+							<li className="navbar__link">
+								<Link to="/alert">Mensaje</Link>
+							</li>
+						)}
 					<li className="navbar__link navbar__link-login">
 						{!userGlobal ? (
-							<Link to="/login">Iniciar Sesión</Link>
+							<Button
+								handleClick={handleLogin}
+								message="Iniciar Sesión"
+								width="fit-content"
+							/>
 						) : (
 							<Button
 								handleClick={logout}

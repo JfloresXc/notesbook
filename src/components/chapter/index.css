@@ -1,36 +1,66 @@
-.cardChapter {
-	max-width: 300px;
+.chapter-card {
+	flex: 1 1 300px;
+
+	/* width: 300px; */
 	min-height: 500px;
 	background: var(--colors-light);
 	border-radius: 3px;
 	padding: 1em;
-	box-shadow: -1px 5px 5px 2px rgba(0, 0, 0, 0.8);
+	box-shadow: -1px 5px 5px 1px rgba(0, 0, 0, 0.8);
 	display: flex;
 	flex-direction: column;
 	gap: 1em;
 	position: relative;
+	cursor: pointer;
+	transition: 0.2s ease all;
 }
 
-.cardChapter__body {
+.chapter-card__body {
 	display: flex;
 	flex-direction: column;
 	gap: 1em;
 	height: 100%;
 }
 
-.cardChapter__image {
+.chapter-card__image {
 	width: 100%;
-	height: 20rem;
+	height: 20em;
 	object-fit: cover;
 }
 
-.cardChapter__title {
+.chapter-card__title {
 	font-size: var(--font-subtitle);
+	font-weight: 500;
+	color: var(--colors-primary-2-light);
 }
 
-.cardChapter__description {
+.chapter-card:hover {
+	transform: scale(1.05);
+}
+
+.chapter-card__description {
 	font-size: var(--font-text);
 	padding-right: 2em;
+}
+
+.chapter-card__footer {
+	display: flex;
+	justify-content: space-between;
+	font-size: var(--font-minitext);
+}
+
+.chapter-card__username,
+.chapter-card__date {
+	color: var(--colors-light);
+	padding: 0.5em 1em;
+	border-radius: 3px;
+}
+
+.chapter-card__date {
+	background: var(--colors-primary);
+}
+.chapter-card__username {
+	background: var(--colors-primary-2-light);
 }
 
 /* Chapter Preview */
@@ -61,21 +91,6 @@
 	border-radius: 5px;
 }
 
-/* --------------------------------- MODIFIERS */
-.chapter-float {
-	margin-left: -10em;
-	transition: margin-left 200ms;
-}
-
-.chapter-float:nth-child(1) {
-	margin-left: 0;
-	transition: margin-left 200ms;
-}
-
-.chapter-float:hover + .chapter-float {
-	margin-left: -1em;
-}
-
 /* ------------------------------------- MEDIAQUERIES */
 @media screen and (max-width: 1200px) {
 	.chapterPreview {
@@ -90,5 +105,11 @@
 @media screen and (max-width: 900px) {
 	.chapterPreview {
 		gap: 1em;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.chapter-card {
+		min-height: 400px;
 	}
 }

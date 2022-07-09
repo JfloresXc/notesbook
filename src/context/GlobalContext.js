@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { Note as NoteModel } from "../models/Note"
 import { Chapter as ChapterModel } from "../models/Chapter"
-import { where, query, collection, onSnapshot } from "firebase/firestore"
-import { db } from "../firebase"
+import { where } from "firebase/firestore"
 import { useUser } from "../hooks/useUser"
+import { useAlert } from "../hooks/useAlert"
+import { getChapters as getChaptersService } from "../services/chapters/getChapters"
+import { getNotes as getNotesService } from "../services/notes/getNotes"
+import { onSnapshot, collection } from "firebase/firestore"
+import { db } from "../firebase"
 
 export const Context = React.createContext({})
 
@@ -13,61 +17,68 @@ export default function GlobalContext({ children }) {
 	const [note, setNote] = useState(new NoteModel())
 	const [chapter, setChapter] = useState(new ChapterModel())
 	const [loading, setLoading] = useState(false)
+	const { updateAlert, setAlertTime } = useAlert()
 
 	const { userGlobal } = useUser()
-	const chaptersRef = collection(db, "chapters")
-	const notesRef = collection(db, "notes")
 
 	useEffect(() => {
 		setLoading(true)
-		let conditionWhere = validateUserState()
-		let consultation = query(chaptersRef, conditionWhere)
-		setConsultationChapters({ consultation })
+		getChapters()
+		getNotes()
 	}, [userGlobal])
 
 	useEffect(() => {
+		onSnapshot(collection(db, "alerts"), async (alertsKey) => {
+			let alert
+			alertsKey.forEach((docKey) => (alert = docKey.data()))
+			if (alert?.message) {
+				setAlertTime({
+					message: alert.message,
+					success: true,
+				})
+				await updateAlert({ message: "" })
+			}
+		})
+	}, [])
+
+	const getChapters = () => {
 		let conditionWhere = validateUserState()
-		let consultation = query(notesRef, conditionWhere)
-		setConsultationNotes({ consultation })
-	}, [userGlobal])
+		getChaptersService({ consultation: conditionWhere }).then(
+			(chaptersKey) => {
+				setChapters(chaptersKey)
+				setLoading(false)
+			}
+		)
+	}
+
+	const getNotes = () => {
+		let conditionWhere = validateUserState()
+		getNotesService({ consultation: conditionWhere }).then((notesKey) => {
+			setNotes(notesKey)
+		})
+	}
 
 	const validateUserState = useCallback(() => {
-		if (!userGlobal) {
-			return where("hidden", "==", false)
+		if (userGlobal) {
+			if (userGlobal.displayName === "administrator") {
+				return where("hidden", "==", false)
+			} else if (userGlobal.displayName === "user") {
+				return where("idUser", "==", userGlobal?.uid)
+			}
 		} else {
-			return where("idUser", "==", userGlobal?.uid)
+			return where("hidden", "==", false)
 		}
 	}, [userGlobal])
-
-	const setConsultationChapters = ({ consultation }) => {
-		onSnapshot(consultation, ({ docs }) => {
-			let data = []
-			docs.map((docKey) => {
-				data.push({ ...docKey.data(), id: docKey.id })
-			})
-			setLoading(false)
-			setChapters(data)
-		})
-	}
-
-	const setConsultationNotes = ({ consultation }) => {
-		onSnapshot(consultation, ({ docs }) => {
-			let data = []
-			docs.map((docKey) => {
-				data.push({ ...docKey.data(), id: docKey.id })
-			})
-			if (JSON.stringify(data) === JSON.stringify(notes)) return
-			setNotes(data)
-		})
-	}
 
 	return (
 		<Context.Provider
 			value={{
 				notes,
 				setNotes,
+				getNotes,
 				chapters,
 				setChapters,
+				getChapters,
 				loading,
 				setLoading,
 				note,

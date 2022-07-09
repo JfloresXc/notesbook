@@ -6,6 +6,6 @@ export class Note {
 		this.title = ""
 		this.description = ""
 		this.imageUrl = ""
-		this.hidden = false
+		this.hidden = true
 	}
 }

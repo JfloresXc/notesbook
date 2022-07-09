@@ -13,10 +13,10 @@ function Note({ note }) {
 					source={imageUrl}
 					description={description}
 				/>
-				<h1 className="note__title">{title}</h1>
 			</div>
 			<div className="note__footer">
-				<h2 style={{ paddingBottom: ".2em" }}>{date}</h2>
+				<h2 className="note__title">{title}</h2>
+				<h2 className="note__date">{date}</h2>
 				<p className="note__description">{description}</p>
 			</div>
 		</div>

@@ -2,7 +2,7 @@
 	position: absolute;
 	background: transparent;
 	z-index: 100;
-	font-size: 16px;
+	font-size: var(--font-minitext);
 }
 
 .menu__content {
@@ -16,11 +16,17 @@
 
 .menu__icon {
 	display: block;
+	text-align: center;
+	width: 40px;
+	background: var(--colors-light);
+	outline: none;
 }
 
 .menu:hover .menu__content {
 	display: block;
 	background: var(--colors-light);
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
 
 .menu:hover .menu__icon {
@@ -38,4 +44,8 @@
 
 .menu__content-item-hidden:hover {
 	background: var(--colors-accent-2-light);
+}
+
+.menu__content-item-add:hover {
+	background: var(--colors-primary-1-light);
 }

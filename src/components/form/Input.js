@@ -1,14 +1,14 @@
 import React from "react"
 import "./index.css"
 
-export default function Input({
+function Input({
 	type = "text",
 	labelMessage = "Not label message",
 	name,
 	placeholder,
 	register,
 	errors,
-	required = false,
+	required,
 	pattern = "",
 }) {
 	return (
@@ -37,3 +37,5 @@ export default function Input({
 		</div>
 	)
 }
+
+export default React.memo(Input)

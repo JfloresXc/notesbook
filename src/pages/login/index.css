@@ -3,3 +3,23 @@
 	flex-direction: column;
 	align-items: center;
 }
+
+.login__link-register {
+	text-align: "center";
+	color: var(--colors-primary);
+	font-size: var(--font-text);
+}
+
+.login__link-password {
+	color: var(--colors-light);
+	background: var(--colors-primary-1-light);
+	font-size: var(--font-text);
+	padding: 1em;
+	border-radius: 3px;
+	margin-top: -1em;
+	transition: 0.3s ease-in-out all;
+}
+
+.login__link-password:hover {
+	background: var(--colors-primary-2-light);
+}

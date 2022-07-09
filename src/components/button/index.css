@@ -1,9 +1,9 @@
 .button {
 	--time-transition: 0.3s;
 	position: relative;
-	padding: 2em 1em;
+	padding: 1.5em 0em;
 	min-height: 20px;
-	font-size: 0.875em;
+	font-size: var(--font-text);
 	transition: var(--time-transition) ease-in-out all;
 }
 
@@ -20,14 +20,14 @@
 	width: fit-content;
 }
 
-/* Design Secondary */
-.button-secondary {
+/* Design primary */
+.button-primary {
 	background: var(--colors-primary);
 	color: var(--colors-light);
 	position: relative;
 }
 
-.button-secondary .button__message {
+.button-primary .button__message {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -35,22 +35,22 @@
 	transition: var(--time-transition) ease-in-out all;
 }
 
-.button-secondary .button__icon {
+.button-primary .button__icon {
 	position: absolute;
 	transform: translate(-50%, -50%);
 	opacity: 0;
 }
 
-.button-secondary:hover {
+.button-primary:hover {
 	background: var(--colors-primary-1-light);
 }
 
-.button-secondary:hover .button__message {
+.button-primary:hover .button__message {
 	transform: translate(-80px, -50%);
 	opacity: 1;
 }
 
-.button-secondary:hover .button__icon {
+.button-primary:hover .button__icon {
 	transform: translate(60px, -50%);
 	opacity: 1;
 }

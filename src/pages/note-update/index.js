@@ -5,7 +5,7 @@ import Title from "../../components/title"
 import NotePreview from "../../components/note/NotePreview"
 
 export default function NoteUpdate() {
-	const [_, params] = useRoute(`/notes/update/:idNote`)
+	const params = useRoute(`/notes/update/:idNote`)[1]
 	const { updateNote, note } = useNote({ id: params.idNote })
 
 	const handleSubmitFather = async (data) => {
@@ -20,7 +20,7 @@ export default function NoteUpdate() {
 
 	return (
 		<div className="page noteUpdate">
-			<Title title="📏 Formulario editar nota" />
+			<Title title="Formulario editar nota" />
 			<NotePreview
 				isEdit={true}
 				onSubmitForm={handleSubmitFather}

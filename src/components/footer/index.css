@@ -11,9 +11,44 @@
 
 .footer__title {
 	margin-bottom: 1em;
-	font-size: var(--font-bigtitle);
+	font-size: var(--font-subtitle);
+}
+
+.footer__description,
+.footer__author,
+.footer__email {
+	font-size: 1.2em;
+	line-height: 1.5em;
+}
+
+.footer__body {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 2em;
 }
 
 .footer__description {
-	font-size: 1.2em;
+	max-width: 500px;
+	width: 100%;
+}
+
+.footer__contact {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+/* ------------- MEDIAQUERIES */
+@media screen and (max-width: 900px) {
+	.footer {
+		text-align: center;
+	}
+	.footer__description {
+		max-width: 100%;
+	}
+	.footer__contact {
+		align-items: center;
+		width: 100%;
+	}
 }

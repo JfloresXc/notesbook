@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react"
-import { useRoute } from "wouter"
+import React, { useEffect } from "react"
 import Button from "../button"
 import Input from "./Input"
-import "./index.css"
 import Select from "./Select"
 import TextArea from "./TextArea"
 import InputFile from "./InputFile"
 import { useChapters } from "../../hooks/useChapters"
 import { useForm } from "react-hook-form"
+import { useNote } from "../../hooks/useNote"
+import "./index.css"
+import { useChapter } from "../../hooks/useChapter"
 
 export default function FormNote({
 	title = "Not found",
@@ -15,15 +16,17 @@ export default function FormNote({
 	handleSubmitFather,
 	isNote = false,
 	objectEdit = null,
+	objectAdd = null,
 }) {
 	const { chapters } = useChapters()
+	const { note } = useNote()
+	const { chapter } = useChapter()
 	const options = chapters?.map(({ id, title }) => {
 		return { id, title }
 	})
 	const {
 		register,
 		handleSubmit,
-		reset,
 		formState: { errors },
 		setValue,
 	} = useForm({
@@ -39,16 +42,19 @@ export default function FormNote({
 			setValue("title", title)
 			setValue("description", description)
 
-			if (objectEdit.idChapter) {
+			if (objectEdit.idChapter)
 				setValue("idChapter", `${objectEdit.idChapter}`.trim())
-			}
 		}
-	}, [objectEdit, chapters])
+
+		if (objectAdd) {
+			if (objectAdd?.idChapter)
+				setValue("idChapter", `${objectAdd?.idChapter}`.trim())
+		}
+	}, [chapter, note, objectEdit])
 
 	const handleSubmitOwn = (data) => {
 		if (data.file[0] && data.file[0].size > 1024 * 1024) return
 		handleSubmitFather(data)
-		reset()
 	}
 
 	return (
@@ -82,12 +88,12 @@ export default function FormNote({
 			<InputFile
 				name={"file"}
 				previewFile={previewFile}
+				isEdit={Boolean(objectEdit)}
 				{...propsForm}
-				required={objectEdit ? false : true}
 			/>
 			<Button
 				type="submit"
-				design="secondary"
+				design="primary"
 				icon="➕"
 				message={title}
 				width="200px"

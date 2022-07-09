@@ -1,7 +1,7 @@
 import React from "react"
 import "./index.css"
 
-export default function Select({
+function Select({
 	options = [],
 	labelMessage = "Not label message",
 	name,
@@ -34,3 +34,5 @@ export default function Select({
 		</div>
 	)
 }
+
+export default React.memo(Select)

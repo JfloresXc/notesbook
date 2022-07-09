@@ -6,7 +6,7 @@ export default function Signup() {
 	return (
 		<div className="page signup">
 			<FormLogin
-				buttonMessage={"Registrate"}
+				buttonMessage={"Regístrate"}
 				submit={true}
 				isRegister={true}
 			/>

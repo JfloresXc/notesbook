@@ -22,12 +22,12 @@ import { getAuth } from "firebase/auth"
 // }
 
 const firebaseConfig = {
-	apiKey: "AIzaSyASi4D5MYOhaVs8M_nIp9Hj_FF3TUVmdDY",
-	authDomain: "mary-2022-06.firebaseapp.com",
-	projectId: "mary-2022-06",
-	storageBucket: "mary-2022-06.appspot.com",
-	messagingSenderId: "789068529759",
-	appId: "1:789068529759:web:226956c56c04a839ce1bea",
+	apiKey: "AIzaSyDVbxeUHaAIhxvRgSgMf6f9OremlxoH-OU",
+	authDomain: "notesbook-e5135.firebaseapp.com",
+	projectId: "notesbook-e5135",
+	storageBucket: "notesbook-e5135.appspot.com",
+	messagingSenderId: "130312358830",
+	appId: "1:130312358830:web:25fea6fa503b8a8207563f",
 }
 
 const app = initializeApp(firebaseConfig)

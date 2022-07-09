@@ -18,15 +18,15 @@ nav {
 }
 
 .navbar__links {
-	width: 400px;
 	display: flex;
 	justify-content: flex-end;
 	width: 50%;
 }
 
 .navbar__brand-link a {
-	color: var(--colors-primary);
-	font-size: 1.8em;
+	/* color: var(--colors-primary-1-light); */
+	color: var(--colors-gray-500);
+	font-size: var(--font-subtitle);
 	font-weight: 600;
 }
 
@@ -38,13 +38,13 @@ nav {
 }
 
 .navbar__link > a {
-	font-size: 0.9em;
+	font-size: var(--font-text);
 	font-weight: 400;
-	color: var(--colors-primary);
+	color: var(--colors-primary-2-light);
 }
 
-.navbar__link:hover a {
-	border-bottom: 1px solid var(--colors-primary);
+.navbar__link a:hover {
+	opacity: 0.6;
 }
 
 .navbar__menu {
@@ -69,58 +69,37 @@ nav {
 
 /* MODIFIERS */
 .navbar__link-login {
-	border: 1px solid var(--colors-primary);
+	border: 1px solid var(--colors-primary-2-light);
 	border-radius: 2px;
 	cursor: pointer;
 	text-align: center;
-	transition: 0.2s ease-in-out all;
 }
 
 .navbar__link-login:hover {
-	background: var(--colors-primary-1-light);
+	background: var(--colors-primary-2-light);
 }
 
-.navbar__link-login > a {
-	display: block;
-	width: 100%;
-	padding: 0.5em 0;
-	/* transition: 0.2s ease-in-out all; */
-	font-size: 0.875em;
+.navbar__link-login > button {
+	padding: 0.7em 0;
+	min-width: 100%;
+	background: transparent;
+	color: var(--colors-primary-2-light);
+	font-size: var(--font-text);
+	transition: 0s ease-in-out all;
 }
 
-.navbar__link-login:hover > a,
 .navbar__link-login:hover > button {
 	color: var(--colors-light);
 }
 
-.navbar__link-login > button {
-	padding: 0.5em 0;
-	min-width: 100%;
-	background: transparent;
-	color: var(--colors-primary);
-}
-
-.navbar__link-login:hover > a {
-	border-bottom: none;
-}
-
 /* CONDITION */
 .sticky {
-	background: var(--colors-primary);
+	background: var(--colors-primary-2-light);
 	color: whitesmoke;
 }
 
 .sticky a {
 	color: whitesmoke;
-	color: var(--colors-warning);
-}
-
-.sticky .navbar__links {
-	background: var(--colors-primary);
-}
-
-.sticky .navbar__link:hover a {
-	border-bottom: 1px solid var(--colors-light);
 }
 
 .sticky .navbar__menu {
@@ -129,6 +108,11 @@ nav {
 
 .sticky .navbar__link-login {
 	border: 1px solid var(--colors-light);
+}
+
+.sticky .navbar__link-login:hover {
+	background: var(--colors-light);
+	color: var(--colors-primary-2-light);
 }
 
 .sticky .navbar__link-login > button {
@@ -149,7 +133,7 @@ nav {
 	}
 
 	.navbar__menu .navbar__menu-line {
-		background: var(--colors-primary);
+		background: var(--colors-primary-2-light);
 	}
 
 	.navbar__menu .navbar__menu-line-1 {
@@ -183,7 +167,6 @@ nav {
 		height: 50px;
 		line-height: 50px;
 		display: block;
-		text-align: center;
 	}
 
 	.navbar__link:hover a {
@@ -198,7 +181,7 @@ nav {
 	}
 
 	.navbar__link-login {
-		background: var(--colors-primary-1-light);
+		background: var(--colors-primary-2-light);
 		border: none;
 		width: 100%;
 	}
@@ -218,17 +201,19 @@ nav {
 		background: transparent;
 	}
 
+	.sticky .navbar__links {
+		background: var(--colors-primary-2-light);
+	}
+
 	.sticky .navbar__menu-line {
 		background: var(--colors-light);
 	}
 
 	.sticky .navbar__link-login {
-		border: none;
+		color: var(--colors-primary-2-light);
+		background: var(--colors-light);
 	}
 
-	.sticky .navbar__link:hover a {
-		border-bottom: none;
-	}
 	.navbar__menu-open .navbar__menu-line-1 {
 		animation-name: top-line-animation;
 	}

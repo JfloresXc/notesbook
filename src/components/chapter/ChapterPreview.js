@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useRef } from "react"
 import { useRoute } from "wouter"
 import { useChapter } from "../../hooks/useChapter"
+import { useChapters } from "../../hooks/useChapters"
 import FormNote from "../form/FormNote"
 import "./index.css"
 
@@ -13,18 +14,18 @@ export default function ChapterPreview({
 	const messageImageRef = useRef()
 
 	const [_, params] = useRoute(`/chapters/update/:idChapter`)
-	const { getChapter, chapter, setChapter } = useChapter({
-		id: params?.idChapter,
-	})
+	const { getChapter, chapter } = useChapter()
+	const { chapters } = useChapters()
 
 	useEffect(() => {
 		if (params?.idChapter) {
-			getChapter().then((chapterKey) => {
-				setChapter({ ...chapterKey })
-				imgRef.current.src = chapterKey.imageUrl
-			})
+			getChapter({ id: params?.idChapter })
 		}
-	}, [setChapter])
+	}, [chapters])
+
+	useEffect(() => {
+		imgRef.current.src = chapter.imageUrl
+	}, [chapter])
 
 	const previewFile = useCallback((file) => {
 		let reader = new FileReader()

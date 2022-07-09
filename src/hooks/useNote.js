@@ -1,7 +1,6 @@
 import { useContext, useCallback } from "react"
 import { useLocation } from "wouter"
 import { postNote } from "../services/notes/postNote"
-import { getNote as getNoteService } from "../services/notes/getNote"
 import { putNote } from "../services/notes/putNote"
 import { showNote } from "../services/notes/showNote"
 import { deleteNote as removeNote } from "../services/notes/deleteNote"
@@ -11,8 +10,8 @@ import { useAlert } from "./useAlert"
 import { useUser } from "./useUser"
 
 export const useNote = ({ id } = {}) => {
-	const { note, setNote, notes } = useContext(GlobalContext)
-	const [_, setLocation] = useLocation()
+	const { note, setNote, notes, getNotes } = useContext(GlobalContext)
+	const setLocation = useLocation()[1]
 	const { setAlertTime } = useAlert()
 	const { userGlobal } = useUser()
 
@@ -25,10 +24,11 @@ export const useNote = ({ id } = {}) => {
 				idUser: userGlobal?.uid,
 				title,
 				description,
-				hidden: false,
+				hidden: true,
 				date: new Date().toLocaleDateString(),
 			}
 			await postNote({ note, file: fileImage })
+			getNotes()
 			setLocation(`/notes/${idChapter}`)
 			setAlertTime({
 				message: "✅ Agregado satisfactoriamente ✅",
@@ -39,13 +39,13 @@ export const useNote = ({ id } = {}) => {
 				message: error.code,
 				success: false,
 			})
-			console.log(error)
 		}
 	}
 
 	const updateNote = async ({ note, file }) => {
 		try {
 			await putNote({ note, id, file })
+			getNotes()
 			setLocation(`/notes/note/${id}`)
 			setAlertTime({
 				message: "✅ Editado satisfactoriamente ✅",
@@ -61,13 +61,8 @@ export const useNote = ({ id } = {}) => {
 
 	const getNote = useCallback(
 		({ id }) => {
-			// if (notes?.length === 0) {
-			// 	const note = await getNoteService({ id })
-			// 	setNote({ ...note })
-			// }
-
 			const idNote = id
-			const noteFinded = notes?.find(({ id }) => id == idNote)
+			const noteFinded = notes?.find(({ id }) => id === idNote)
 			setNote({ ...noteFinded })
 		},
 		[notes]
@@ -76,6 +71,7 @@ export const useNote = ({ id } = {}) => {
 	const deleteNote = async () => {
 		try {
 			await removeNote({ idNote: id })
+			getNotes()
 			setAlertTime({
 				message: "✅ Eliminado satisfactoriamente ✅",
 				success: true,
@@ -91,11 +87,12 @@ export const useNote = ({ id } = {}) => {
 	const hideNote = async () => {
 		try {
 			const idNote = id
-			const noteFinded = notes?.find(({ id }) => id == idNote)
+			const noteFinded = notes?.find(({ id }) => id === idNote)
 			await showNote({ note: noteFinded, id })
+			getNotes()
 			setAlertTime({
 				message: `✅ Nota ${
-					note?.hidden ? "pública" : "privada"
+					noteFinded?.hidden ? "pública" : "privada"
 				} ✅`,
 				success: true,
 			})

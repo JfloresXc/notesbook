@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import { Context as AlertContext } from "../context/AlertContext"
+import { putAlert } from "../services/alerts/putAlert"
 
 export const useAlert = () => {
 	const { alert, setAlert } = useContext(AlertContext)
@@ -11,8 +12,13 @@ export const useAlert = () => {
 		}, 4000)
 	}
 
+	const updateAlert = async ({ message }) => {
+		await putAlert({ message })
+	}
+
 	return {
 		alert,
 		setAlertTime,
+		updateAlert,
 	}
 }

@@ -1,6 +1,11 @@
 .title {
-	width: 100%;
+	width: 80%;
 	display: block;
-	padding-bottom: 1em;
-	font-size: var(--font-title);
+	padding: 1em 0;
+	font-size: var(--font-bigtitle);
+	font-weight: 600;
+	color: var(--colors-primary-2-light);
+	text-transform: uppercase;
+	text-align: center;
+	margin: auto;
 }

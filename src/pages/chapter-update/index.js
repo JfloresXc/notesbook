@@ -1,11 +1,11 @@
-import React, { useContext } from "react"
+import React from "react"
 import { useRoute } from "wouter"
 import { useChapter } from "../../hooks/useChapter"
 import Title from "../../components/title"
 import ChapterPreview from "../../components/chapter/ChapterPreview"
 
 export default function ChapterUpdate() {
-	const [_, params] = useRoute(`/chapters/update/:idChapter`)
+	const params = useRoute(`/chapters/update/:idChapter`)[1]
 	const { updateChapter, chapter } = useChapter({ id: params.idChapter })
 
 	const handleSubmitFather = async (data) => {
@@ -20,7 +20,7 @@ export default function ChapterUpdate() {
 
 	return (
 		<div className="page chapterUpdate">
-			<Title title="📏 Formulario editar capítulo" />
+			<Title title="Formulario editar capítulo" />
 			<ChapterPreview
 				isEdit={true}
 				onSubmitForm={handleSubmitFather}

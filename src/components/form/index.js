@@ -6,13 +6,7 @@ import { useUser } from "../../hooks/useUser"
 import { useForm } from "react-hook-form"
 import { useAlert } from "../../hooks/useAlert"
 
-const expressions = {
-	user: /^[a-zA-Z0-9\_\-]{4,16}$/,
-	names: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
-	password: /^.{4,12}$/,
-	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-	phone: /^\d{7,9}$/,
-}
+import { expressions } from "../../services/utils"
 
 export function FormLogin({ buttonMessage, isRegister = false }) {
 	const { login, signup } = useUser()
@@ -35,7 +29,6 @@ export function FormLogin({ buttonMessage, isRegister = false }) {
 				confirmPassword: data?.confirmPassword,
 			})
 		else await login({ email, password })
-		reset()
 	}
 
 	const processSignup = async ({ email, password, confirmPassword }) => {
@@ -78,7 +71,7 @@ export function FormLogin({ buttonMessage, isRegister = false }) {
 				)}
 				<Button
 					type="submit"
-					design="secondary"
+					design="primary"
 					icon="🌻"
 					message={buttonMessage}
 				/>

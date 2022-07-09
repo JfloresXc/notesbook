@@ -1,11 +1,12 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
-export default function InputFile({
+function InputFile({
 	name,
 	register,
 	previewFile,
 	errors,
 	required,
+	isEdit = false,
 }) {
 	const [validationLimitFile, setValidationLimitFile] = useState({
 		limit: true,
@@ -44,9 +45,11 @@ export default function InputFile({
 				id="file"
 				type="file"
 				className="inputFile"
-				{...register("file", { required })}
+				{...register("file", !isEdit && { required })}
 				onChange={handleChange}
 			/>
 		</div>
 	)
 }
+
+export default React.memo(InputFile)

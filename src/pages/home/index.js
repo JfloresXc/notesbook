@@ -51,7 +51,7 @@ export default function Home() {
 		<div className=" home">
 			<div className="home__header">
 				<h1 className="home__title">
-					Mmmmmmm ¿Tan solo una escuálida app de notitas? 🤷‍♂️
+					¿Tan solo una escuálida app de notitas? ¿pipipi?
 				</h1>
 				<div className="home__description">
 					<p className="home__description-content">
@@ -62,16 +62,12 @@ export default function Home() {
 						para alguna persona en especial? Es tu decisión
 						elegir cómo utilizarlos, gustos que gustan.
 					</p>
-					<div
+					<button
 						className="home__button"
 						onClick={handleAuthorPage}
 					>
-						<Button
-							message="Desarrollador "
-							design="line-light"
-							width="fit-content"
-						/>
-					</div>
+						<span>Desarrollador</span>
+					</button>
 				</div>
 			</div>
 			<div className="home__body page">

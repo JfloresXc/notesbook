@@ -10,7 +10,7 @@
 
 .form__title {
 	text-align: center;
-	font-size: var(--font-title);
+	font-size: var(--font-subtitle);
 }
 
 .form__group {
@@ -25,12 +25,12 @@
 .label {
 	padding-bottom: 0.3em;
 	display: block;
-	font-size: 1em;
+	font-size: var(--font-text);
 }
 
 /* INPUT */
 input {
-	font-size: 0.875em;
+	font-size: var(--font-minitext);
 }
 
 .inputFile {
@@ -51,15 +51,14 @@ input {
 }
 
 .input__error {
-	display: block;
 	margin-top: 0.5em;
-	font-size: 0.9375em;
 	color: var(--colors-danger);
+	font-size: var(--font-minitext);
 }
 
 /* TEXTAREA */
 .textarea {
-	font-size: 0.875em;
+	font-size: var(--font-minitext);
 }
 
 /* SELECT */
@@ -71,13 +70,13 @@ input {
 /* FORM */
 .form-dark {
 	max-width: 100%;
-	background: #1a3263;
+	background: var(--colors-primary-2-light);
 	border-radius: 3px;
 	color: var(--colors-light);
 }
 
 @media screen and (max-width: 600px) {
 	.form {
-		padding: 2em 0;
+		padding: 2em;
 	}
 }

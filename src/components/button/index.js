@@ -8,6 +8,7 @@ export default function Button({
 	message = "Not message",
 	icon = "",
 	handleClick = null,
+	children,
 }) {
 	return (
 		<button
@@ -18,6 +19,7 @@ export default function Button({
 		>
 			{icon ? <i className="button__icon">{icon}</i> : ""}
 			<span className="button__message">{message}</span>
+			{children || ""}
 		</button>
 	)
 }

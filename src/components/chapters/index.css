@@ -2,11 +2,13 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
+	gap: 2em;
 }
 
 .chapters__title {
 	font-size: var(--font-subtitle);
-	padding: 0.5em 0;
+	padding-bottom: 1em;
+	color: var(--colors-primary-1-light);
 }
 
 .chapters__separator {
@@ -15,22 +17,22 @@
 	outline: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+.chapters__button-feedback {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 2em;
+}
+
 /* ------------------------- MODIFIERS */
 .chapters-public {
 	display: flex;
 	flex-direction: column;
 	gap: 2em;
+	margin-top: 1em;
 }
 
 @media screen and (max-width: 1200px) {
 	.chapters {
-		gap: 2em;
-	}
-
-	/* -------------- MODIFIERS */
-	.chapters .chapter-float {
-		flex: 1 1 300px;
-		max-width: 100%;
-		margin: 0;
+		justify-content: flex-start;
 	}
 }

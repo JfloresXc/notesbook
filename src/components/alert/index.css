@@ -3,7 +3,6 @@
 	bottom: 20px;
 	left: 50%;
 	transform: translateX(-50%);
-
 	width: 400px;
 	min-height: 60px;
 	display: flex;
@@ -15,8 +14,11 @@
 }
 
 .alert__message {
+	padding: 1em;
 	color: var(--colors-light);
 	text-align: center;
+	font-size: var(--font-text);
+	text-transform: uppercase;
 }
 
 /* --------------- MODIFIERS */

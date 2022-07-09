@@ -13,6 +13,8 @@ import ChapterUpdate from "../../pages/chapter-update"
 import ChaptersPage from "../../pages/chapters"
 import ErrorPage from "../../pages/error"
 import OptionsPage from "../../pages/options"
+import Forgotten from "../../pages/forgotten"
+import AlertAdd from "../../pages/alert-add"
 
 import Alert from "../alert"
 
@@ -58,12 +60,21 @@ export default function Routes() {
 						<Redirect to="/login" />
 					)}
 				</Route>
+				<Route path="/alert">
+					{userGlobal &&
+					userGlobal.displayName === "administrator" ? (
+						<AlertAdd />
+					) : (
+						<Redirect to="/" />
+					)}
+				</Route>
 				<Route path="/login">
 					{!userGlobal ? <Login /> : <Redirect to="/" />}
 				</Route>
 				<Route path="/register">
 					{!userGlobal ? <Signup /> : <Redirect to="/" />}
 				</Route>
+				<Route path="/forgotten" component={Forgotten} />
 				<Route path="/notes/note/:idNote" component={NotePage} />
 				<Route path="/notes/:idChapter" component={NotesPage} />
 				<Route path="/chapters" component={ChaptersPage} />

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useLocation } from "wouter"
 import { Note } from "../../models/Note"
 import Image from "../image"
@@ -51,9 +51,7 @@ function NoteCard({ note = new Note() }) {
 					/>
 				</div>
 				<div className="note-card__hover">
-					<span className="note-card__icon">📕</span>
 					<h2 className="note-card__title">{title}</h2>
-					<span className="note-card__icon-yellow">📒</span>
 				</div>
 			</button>
 		</div>

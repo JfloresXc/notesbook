@@ -3,21 +3,20 @@ import ChapterCard from "../chapter/ChapterCard"
 import Title from "../title"
 import { useUser } from "../../hooks/useUser"
 import "./index.css"
+import Button from "../button"
+import { useChapters } from "../../hooks/useChapters"
 
 function ChaptersPublic({ userChapters = [] }) {
 	const chaptersUserRendered = userChapters.map((chapterUserKey, index) => {
 		const { idUser, chaptersFinally } = chapterUserKey
 		return (
 			<div key={index}>
-				<h1 className="chapters__title">{`🦹‍♂️ Usuario:  ${idUser.slice(
-					0,
-					10
-				)}`}</h1>
 				<div className="chapters" key={idUser}>
 					{chaptersFinally.map((chapterKey, index) => {
+						const username = idUser.slice(0, 10)
 						return (
 							<ChapterCard
-								desing={"float"}
+								username={username}
 								{...chapterKey}
 								key={index}
 							/>
@@ -34,10 +33,12 @@ function ChaptersPublic({ userChapters = [] }) {
 
 export default function Chapters({ chapters = [] }) {
 	const { userGlobal } = useUser()
+	const { getChapters } = useChapters()
 
 	let usersId = chapters?.map(({ idUser }) => {
 		return idUser
 	})
+
 	const users = usersId.filter((userIdKey, index) => {
 		return usersId.indexOf(userIdKey) === index
 	})
@@ -53,11 +54,14 @@ export default function Chapters({ chapters = [] }) {
 		return <ChapterCard desing={"float"} {...chapterKey} key={index} />
 	})
 
+	const handleClickUpdateFeedback = () => {
+		getChapters()
+	}
 	return (
 		<>
-			{userGlobal ? (
+			{userGlobal && userGlobal.rol == "user" ? (
 				<div className="chapters">
-					<Title title=" 📚 Todos tus capítulos " />
+					<Title title="Tus capítulos" />
 					{chaptersRendered}
 				</div>
 			) : (
@@ -65,6 +69,14 @@ export default function Chapters({ chapters = [] }) {
 					<Title
 						title={`Usuarios anónimos y sus capítulos públicos `}
 					/>
+					<div className="chapters__button-feedback">
+						<Button
+							message="Actualizar feedback"
+							width="auto-fit"
+							design="clasic"
+							handleClick={handleClickUpdateFeedback}
+						/>
+					</div>
 					<ChaptersPublic userChapters={userChapters} />
 				</>
 			)}
