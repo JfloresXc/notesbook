@@ -7,9 +7,8 @@ import { useNote } from "../../hooks/useNote"
 import { useUser } from "../../hooks/useUser"
 import "./index.css"
 
-function NoteCard({ note = new Note() }) {
+function NoteCard({ id, title, imageUrl, hidden, isButton = true }) {
 	const [_, setLocation] = useLocation()
-	const { id, title, imageUrl } = note
 	const { userGlobal } = useUser()
 	const { deleteNote, hideNote } = useNote({ id })
 
@@ -30,13 +29,13 @@ function NoteCard({ note = new Note() }) {
 	}
 
 	return (
-		<div className="note-card">
+		<div className={`note-card ${!isButton && "note-card-hover"}`}>
 			{userGlobal && (
 				<Menu
 					onClickUpdate={handleClickUpdate}
 					onClickDelete={handleClickDelete}
 					onClickHidden={handleClickHidden}
-					hidden={note.hidden}
+					hidden={hidden}
 				/>
 			)}
 			<button

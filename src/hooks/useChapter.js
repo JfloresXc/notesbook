@@ -1,17 +1,26 @@
-import { useCallback, useContext } from "react"
+import { useContext } from "react"
+import { useLocation } from "wouter"
+
+import { getChapter as getChapterService } from "../services/chapters/getChapter"
+import { deleteChapter as removeChapter } from "../services/chapters/deleteChapter"
 import { postChapter } from "../services/chapters/postChapter"
 import { putChapter } from "../services/chapters/putChapter"
-import { useLocation } from "wouter"
-import { deleteChapter as removeChapter } from "../services/chapters/deleteChapter"
 import { showChapter } from "../services/chapters/showChapter"
 import { deleteNote } from "../services/notes/deleteNote"
-import { Context as GlobalContext } from "../context/GlobalContext"
+
+import { Context as SingleContext } from "../context/SingleContext"
+import { Context as NotesContext } from "../context/NotesContext"
+
 import { useAlert } from "./useAlert"
 import { useUser } from "./useUser"
+import { useChapters } from "./useChapters"
+import { useCallback } from "react"
 
 export const useChapter = ({ id } = {}) => {
-	const { chapter, setChapter, chapters, getChapters, notes } =
-		useContext(GlobalContext)
+	const { chapter, setChapter } = useContext(SingleContext)
+	const { notes } = useContext(NotesContext)
+	const { chapters } = useChapters()
+
 	const { userGlobal } = useUser()
 	const { setAlertTime } = useAlert()
 	const setLocation = useLocation()[1]
@@ -29,7 +38,6 @@ export const useChapter = ({ id } = {}) => {
 			}
 			setLocation(`/chapters`)
 			await postChapter({ chapter, file: fileImage })
-			getChapters()
 			setAlertTime({
 				message: "✅ Agregado satisfactoriamente ✅",
 				success: true,
@@ -45,7 +53,6 @@ export const useChapter = ({ id } = {}) => {
 	const updateChapter = async ({ chapter, file }) => {
 		try {
 			await putChapter({ chapter, id, file })
-			getChapters()
 			setLocation(`/chapters`)
 			setAlertTime({
 				message: "✅ Editado satisfactoriamente ✅",
@@ -59,20 +66,14 @@ export const useChapter = ({ id } = {}) => {
 		}
 	}
 
-	const getChapter = useCallback(
-		({ id }) => {
-			const idChapter = id
-			const chapterFinded = chapters?.find(
-				({ id }) => id === idChapter
-			)
-			setChapter({ ...chapterFinded })
-		},
-		[chapters]
-	)
+	const getChapter = async ({ id }) => {
+		const chapter = await getChapterService({ id })
+		setChapter({ ...chapter })
+	}
 
-	const deleteChapter = async () => {
+	const deleteChapter = async (id) => {
 		try {
-			let idChapterOwn
+			let idChapterOwn = id
 			notes?.forEach(async (noteKey) => {
 				idChapterOwn = noteKey.idChapter
 				if (idChapterOwn === id) {
@@ -81,7 +82,6 @@ export const useChapter = ({ id } = {}) => {
 			})
 
 			await removeChapter({ idChapter: id })
-			getChapters()
 			setAlertTime({
 				message: "✅ Eliminado satisfactoriamente ✅",
 				success: true,
@@ -94,14 +94,13 @@ export const useChapter = ({ id } = {}) => {
 		}
 	}
 
-	const hideChapter = async () => {
+	const hideChapter = async (id) => {
 		try {
 			const idChapter = id
 			const chapterFinded = chapters?.find(
-				({ id }) => id === idChapter
+				(chapterKey) => chapterKey.id === idChapter
 			)
 			await showChapter({ chapter: chapterFinded, id })
-			getChapters()
 			setAlertTime({
 				message: `✅ Capítulo a ${
 					chapterFinded?.hidden ? "público" : "privado"

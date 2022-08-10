@@ -1,21 +1,22 @@
-@import url("https://fonts.googleapis.com/css2?family=Barlow:wght@300,400,500,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,300&display=swap");
 
 :root {
 	--size-screen-desktop: 1200px;
 	--size-screen-tablet: 900px;
 	--size-screen-mobile: 500px;
-	--height-navbar: 80px;
+	--height-navbar: 70px;
 	--padding-width: 6em;
 	--font-base: 1em;
-	--font-bigtitle: calc(var(--font-base) * 3);
-	--font-title: calc(var(--font-base) * 3);
-	--font-subtitle: calc(var(--font-base) * 1.8);
-	--font-text: calc(var(--font-base) * 1.2);
-	--font-minitext: var(--font-base);
-	--font-family: "Barlow";
+	--font-bigtitle: calc(var(--font-base) * 2.8);
+	--font-title: calc(var(--font-base) * 2.25);
+	--font-subtitle: calc(var(--font-base) * 1.5);
+	--font-text: calc(var(--font-base));
+	--font-minitext: calc(var(--font-base) * 0.875);
+	--font-family: "Roboto";
+	--line-height-text: 1.5em;
 
 	--colors-dark: #000000;
-	--colors-light: #fff;
+	--colors-light: rgb(255, 254, 254);
 	--colors-primary: #0a3556;
 	--colors-primary-1-light: #4075ad;
 	--colors-primary-2-light: #72a8b3;
@@ -53,7 +54,6 @@ code {
 }
 
 button {
-	font-family: var(--font-family), sans-serif;
 	border: none;
 	outline: none;
 	border-radius: 3px;
@@ -98,5 +98,6 @@ li {
 	body {
 		font-size: 12px;
 		--font-text: calc(var(--font-base) * 1.2);
+		--font-bigtitle: calc(var(--font-base) * 2.4);
 	}
 }

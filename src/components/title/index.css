@@ -1,11 +1,17 @@
 .title {
 	width: 80%;
 	display: block;
-	padding: 1em 0;
-	font-size: var(--font-bigtitle);
+	padding: 2em 0;
+	font-size: var(--font-title);
 	font-weight: 600;
 	color: var(--colors-primary-2-light);
-	text-transform: uppercase;
+	text-transform: none;
 	text-align: center;
 	margin: auto;
+}
+
+@media screen and (max-width: 600px) {
+	.title {
+		font-size: calc(var(--font-title) - 3px);
+	}
 }

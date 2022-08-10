@@ -3,11 +3,10 @@ import { useRoute } from "wouter"
 
 import Note from "../../components/note"
 import Breadcrumb from "../../components/breadcrumb"
-import Loader from "../../components/loading/Loader"
+import Loading from "../../components/loading"
 
 import { useNote } from "../../hooks/useNote"
 import { useChapters } from "../../hooks/useChapters"
-import { useNotes } from "../../hooks/useNotes"
 
 import "./index.css"
 
@@ -28,14 +27,13 @@ const ITEMS = [
 
 export default function NotePage() {
 	const [_, params] = useRoute(`/notes/note/:idNote`)
-	const { getNote, note } = useNote()
+	const { getNote, note, isLoading } = useNote()
 	const [items, setItems] = useState(ITEMS)
 	const { chapters } = useChapters()
-	const { notes } = useNotes()
 
 	useEffect(() => {
 		getNote({ id: params.idNote })
-	}, [notes])
+	}, [])
 
 	useEffect(() => {
 		setItemsOwn()
@@ -67,12 +65,14 @@ export default function NotePage() {
 
 	return (
 		<div className="page notePage">
-			<Loader>
+			{isLoading ? (
+				<Loading complete={true} />
+			) : (
 				<>
 					<Breadcrumb items={items} />
 					<Note note={note} />
 				</>
-			</Loader>
+			)}
 		</div>
 	)
 }

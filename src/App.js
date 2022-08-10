@@ -4,6 +4,8 @@ import PageGlobal from "./pages/page-global"
 
 import UserContext from "./context/UserContext"
 import GlobalContext from "./context/GlobalContext"
+import NotesContext from "./context/NotesContext"
+import SingleContext from "./context/SingleContext"
 import AlertContext from "./context/AlertContext"
 
 function App() {
@@ -12,7 +14,11 @@ function App() {
 			<AlertContext>
 				<UserContext>
 					<GlobalContext>
-						<PageGlobal />
+						<NotesContext>
+							<SingleContext>
+								<PageGlobal />
+							</SingleContext>
+						</NotesContext>
 					</GlobalContext>
 				</UserContext>
 			</AlertContext>

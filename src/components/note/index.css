@@ -141,6 +141,10 @@
 	opacity: 1;
 }
 
+.note-card-hover:hover {
+	transform: none;
+}
+
 /* ----------------- MEDIAQUERIES */
 @media screen and (max-width: 1200px) {
 	.notePreview {

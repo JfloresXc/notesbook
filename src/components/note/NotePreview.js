@@ -8,13 +8,12 @@ import "./index.css"
 export default function NotePreview({
 	onSubmitForm,
 	isEdit = false,
-	isAddChapter = false,
 	buttonMessage = "Not Message",
 }) {
 	const imgRef = useRef()
 	const messageImageRef = useRef()
 
-	const [_, params] = useRoute(`/notes/update/:idNote`)
+	const params = useRoute(`/notes/update/:idNote`)[1]
 	const { getNote, note } = useNote()
 	const { notes } = useNotes()
 
@@ -53,7 +52,6 @@ export default function NotePreview({
 					handleSubmitFather={onSubmitForm}
 					previewFile={previewFile}
 					objectEdit={isEdit ? note : null}
-					objectAdd={isAddChapter ? note : null}
 					isNote={true}
 				/>
 			</div>

@@ -1,19 +1,34 @@
 import { useContext } from "react"
-import { Context as UserContext } from "../context/UserContext"
+import { useLocation } from "wouter"
+import { where } from "firebase/firestore"
+
 import { validateError } from "../services/utils"
 import { login as signIn } from "../services/auth/login"
 import { signup as register } from "../services/auth/signup"
 import { logout as singOut } from "../services/auth/logout"
 import { forgottenPassword as forgottenService } from "../services/auth/forgotten"
 import { postUser } from "../services/users/postUser"
+
+import { Context as UserContext } from "../context/UserContext"
 import { useAlert } from "./useAlert"
-import { useLocation } from "wouter"
 
 export const useUser = () => {
 	const { userGlobal, setUserGlobal, loading, setLoading } =
 		useContext(UserContext)
 	const { setAlertTime } = useAlert()
 	const setLocation = useLocation()[1]
+
+	const validateUserCondition = () => {
+		if (userGlobal) {
+			if (userGlobal.displayName === "administrator") {
+				return where("hidden", "==", false)
+			} else if (userGlobal.displayName === "user") {
+				return where("idUser", "==", userGlobal?.uid)
+			}
+		} else {
+			return where("hidden", "==", false)
+		}
+	}
 
 	const login = async ({ email, password }) => {
 		try {
@@ -85,6 +100,7 @@ export const useUser = () => {
 		signup,
 		logout,
 		forgottenPassword,
+		validateUserCondition,
 		userGlobal,
 		setUserGlobal,
 		loading,

@@ -1,0 +1,22 @@
+.notesPage__content {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4em;
+}
+
+.notesPage__content-1 {
+	flex: 1 1 200px;
+}
+
+.notesPage__content-1 > div {
+	position: sticky;
+	top: calc(var(--height-navbar) + 2em);
+}
+
+.notesPage__content-2 {
+	min-height: 100vh;
+	flex: 1 1 600px;
+	display: flex;
+	flex-direction: column;
+	gap: 2em;
+}

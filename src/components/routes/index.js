@@ -29,7 +29,7 @@ export default function Routes() {
 	return (
 		<>
 			<Switch>
-				<Route path="/notes/add">
+				<Route path="/notes/add/:idChapter?">
 					{userGlobal ? <NoteAdd /> : <Redirect to="/login" />}
 				</Route>
 				<Route path="/notes/update/:idNote">

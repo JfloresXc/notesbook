@@ -1,19 +1,23 @@
-import { useContext, useCallback } from "react"
+import { useContext, useState } from "react"
 import { useLocation } from "wouter"
 import { postNote } from "../services/notes/postNote"
+import { getNote as getNoteService } from "../services/notes/getNote"
 import { putNote } from "../services/notes/putNote"
 import { showNote } from "../services/notes/showNote"
 import { deleteNote as removeNote } from "../services/notes/deleteNote"
-import { Context as GlobalContext } from "../context/GlobalContext"
+import { Context as SingleContext } from "../context/SingleContext"
 
 import { useAlert } from "./useAlert"
 import { useUser } from "./useUser"
+import { useNotes } from "./useNotes"
 
 export const useNote = ({ id } = {}) => {
-	const { note, setNote, notes, getNotes } = useContext(GlobalContext)
+	const { note, setNote } = useContext(SingleContext)
 	const setLocation = useLocation()[1]
 	const { setAlertTime } = useAlert()
 	const { userGlobal } = useUser()
+	const { notes, getNotes } = useNotes()
+	const [isLoading, setLoading] = useState(false)
 
 	const addNote = async (data) => {
 		try {
@@ -59,14 +63,13 @@ export const useNote = ({ id } = {}) => {
 		}
 	}
 
-	const getNote = useCallback(
-		({ id }) => {
-			const idNote = id
-			const noteFinded = notes?.find(({ id }) => id === idNote)
-			setNote({ ...noteFinded })
-		},
-		[notes]
-	)
+	const getNote = ({ id }) => {
+		setLoading(true)
+		getNoteService({ id }).then((note) => {
+			setNote({ ...note })
+			setLoading(false)
+		})
+	}
 
 	const deleteNote = async () => {
 		try {
@@ -112,5 +115,6 @@ export const useNote = ({ id } = {}) => {
 		hideNote,
 		setNote,
 		note,
+		isLoading,
 	}
 }

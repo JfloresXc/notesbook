@@ -1,13 +1,13 @@
-import React from "react"
+import React, { useCallback } from "react"
 import { useLocation } from "wouter"
+
 import { useUser } from "../../hooks/useUser"
 import { useChapter } from "../../hooks/useChapter"
+
 import Menu from "../menu"
 import Image from "../image"
+
 import "./index.css"
-import { Chapter } from "../../models/Chapter"
-import { useNote } from "../../hooks/useNote"
-import { Note } from "../../models/Note"
 
 function ChapterCard({
 	title,
@@ -17,40 +17,43 @@ function ChapterCard({
 	hidden,
 	date,
 	username = "tú",
+	isChapterButton = true,
+	handleClickDelete,
+	handleClickHidden,
 }) {
 	const { userGlobal } = useUser()
-	const { deleteChapter, hideChapter } = useChapter({ id })
-	const { setNote } = useNote()
 	const [_, setLocale] = useLocation()
 
-	const handleClickShowNote = () => {
+	const handleClickShowNote = useCallback(() => {
 		setLocale(`/notes/${id}`)
-	}
+	}, [setLocale])
 
-	const handleClickUpdate = () => {
+	const handleClickUpdate = useCallback(() => {
 		setLocale(`/chapters/update/${id}`)
-	}
+	}, [id])
 
-	const handleClickDelete = async () => {
-		await deleteChapter()
-	}
+	const handleClickAdd = useCallback(async () => {
+		setLocale(`/notes/add/${id}`)
+	}, [setLocale])
 
-	const handleClickHidden = async () => {
-		await hideChapter()
-	}
-
-	const handleClickAdd = async () => {
-		setNote({ ...new Note(), idChapter: id })
-		setLocale(`/notes/add`)
+	const formatDate = ({ date }) => {
+		let numbers = date?.split("/")
+		if (!numbers[0][1]) numbers[0] = "0" + numbers[0]
+		if (!numbers[1][1]) numbers[1] = "0" + numbers[1]
+		return `${numbers[0]}/${numbers[1]}/${numbers[2]}`
 	}
 
 	return (
-		<div className={`chapter-card`}>
+		<div
+			className={`chapter-card ${
+				!isChapterButton && "chapter-card-hover"
+			}`}
+		>
 			{userGlobal && (
 				<Menu
 					onClickUpdate={handleClickUpdate}
-					onClickDelete={handleClickDelete}
-					onClickHidden={handleClickHidden}
+					onClickDelete={() => handleClickDelete(id)}
+					onClickHidden={() => handleClickHidden(id)}
 					onClickAdd={handleClickAdd}
 					hidden={hidden}
 					isChapter={true}
@@ -73,7 +76,9 @@ function ChapterCard({
 					<i className="fa-solid fa-user-secret"></i>
 					{" " + username}
 				</p>
-				<p className="chapter-card__date">{date}</p>
+				<p className="chapter-card__date">
+					{formatDate({ date: date || "0/0/0" })}
+				</p>
 			</div>
 		</div>
 	)

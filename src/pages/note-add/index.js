@@ -17,7 +17,6 @@ export default function NotesAdd() {
 			<NotePreview
 				onSubmitForm={handleSubmitFather}
 				buttonMessage="Agregar nota"
-				isAddChapter={true}
 			/>
 		</div>
 	)

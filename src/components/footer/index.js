@@ -15,11 +15,11 @@ export default function Footer() {
 				</p>
 				<div className="footer__contact">
 					<p className="footer__author">
-						<i class="fa-solid fa-user-tie"></i> Jose Flores
-						Chamba
+						<i className="fa-solid fa-user-tie"></i> Jose
+						Flores Chamba
 					</p>
 					<p className="footer__email">
-						<i class="fa-solid fa-envelope"></i>{" "}
+						<i className="fa-solid fa-envelope"></i>{" "}
 						jfloresxc@gmail.com
 					</p>
 				</div>

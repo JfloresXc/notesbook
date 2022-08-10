@@ -29,9 +29,10 @@
 }
 
 .chapter-card__title {
+	margin-top: 1em;
 	font-size: var(--font-subtitle);
 	font-weight: 500;
-	color: var(--colors-primary-2-light);
+	color: var(--colors-gray);
 }
 
 .chapter-card:hover {
@@ -40,7 +41,6 @@
 
 .chapter-card__description {
 	font-size: var(--font-text);
-	padding-right: 2em;
 }
 
 .chapter-card__footer {
@@ -91,6 +91,11 @@
 	border-radius: 5px;
 }
 
+/* -------------------------- MODIFIERS */
+.chapter-card-hover {
+	transform: none;
+}
+
 /* ------------------------------------- MEDIAQUERIES */
 @media screen and (max-width: 1200px) {
 	.chapterPreview {
@@ -111,5 +116,6 @@
 @media screen and (max-width: 600px) {
 	.chapter-card {
 		min-height: 400px;
+		margin: 0 2em;
 	}
 }

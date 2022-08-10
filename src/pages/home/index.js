@@ -51,7 +51,7 @@ export default function Home() {
 		<div className=" home">
 			<div className="home__header">
 				<h1 className="home__title">
-					¿Tan solo una escuálida app de notitas? ¿pipipi?
+					¿Tan solo una agenda, registrador o libro?
 				</h1>
 				<div className="home__description">
 					<p className="home__description-content">

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"
+import { useRoute } from "wouter"
 import Button from "../button"
 import Input from "./Input"
 import Select from "./Select"
@@ -16,7 +17,6 @@ export default function FormNote({
 	handleSubmitFather,
 	isNote = false,
 	objectEdit = null,
-	objectAdd = null,
 }) {
 	const { chapters } = useChapters()
 	const { note } = useNote()
@@ -24,6 +24,7 @@ export default function FormNote({
 	const options = chapters?.map(({ id, title }) => {
 		return { id, title }
 	})
+	const params = useRoute(`/notes/add/:idChapter`)[1]
 	const {
 		register,
 		handleSubmit,
@@ -46,9 +47,8 @@ export default function FormNote({
 				setValue("idChapter", `${objectEdit.idChapter}`.trim())
 		}
 
-		if (objectAdd) {
-			if (objectAdd?.idChapter)
-				setValue("idChapter", `${objectAdd?.idChapter}`.trim())
+		if (params?.idChapter) {
+			setValue("idChapter", `${params?.idChapter}`.trim())
 		}
 	}, [chapter, note, objectEdit])
 
